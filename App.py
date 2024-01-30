@@ -1,6 +1,26 @@
 import os
+
 user_di = {}
-li = []
+
+def user_register(user):
+  user_di[user.split(" ")[1]]=int(user.split(" ")[0]) # user_di에 key value로 학번 이름 따로 저장
+
+def user_find(user):
+  if user in user_di == True:
+    print("존재하지 않습니다")
+  else:
+    print(f"{user_di.get(user)} {user}")
+
+def user_view():
+  for i in user_di.items():
+    print(i)
+
+def user_modify(user):
+  user_di[user.split(" ")[1]]=int(user.split(" ")[0]) # user_di에 key value로 학번 이름 따로 저장
+
+def user_del(user):
+  del user_di[user]
+
 while True:
   menu = """
   1. 사용자 등록
@@ -14,27 +34,23 @@ while True:
   if choice == 1: # 1이면
     print("학번 이름> ", end = "")
     user = input() # 입력받기
-    user_di[user.split(" ")[1]]=int(user.split(" ")[0]) # user_di에 key value로 학번 이름 따로 저장
+    user_register(user)
     print("등록 완료")
   elif choice == 2:
     print("사용자 이름> ", end = "")
     user = input()
-    if user in user_di == True:
-      print("존재하지 않습니다")
-    else:
-      print(f"{user_di.get(user)} {user}")
+    user_find(user)
   elif choice == 3:
-        for i in user_di.items():    print(i, end=' ')
+      user_view()
   elif choice == 4:
     print("사용자 이름> ", end = "")
     user = input()
-    num = 1
     print("학번 이름> ", end = "")
     user = input()
-    user_di[user.split(" ")[1]]=int(user.split(" ")[0]) # user_di 수정
+    user.user_modify(user)
     print("수정 완료")
   elif choice == 5:
     print("사용자 이름> ", end = "")
     user = input()
-    del user_di[user]
+    user_del(user)
     print("삭제 완료")
